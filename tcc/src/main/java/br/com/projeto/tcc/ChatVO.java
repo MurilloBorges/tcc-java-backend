@@ -1,15 +1,11 @@
 package br.com.projeto.tcc;
 
+import java.util.List;
+
 public class ChatVO {
 
 	private Long id;
-	private String msg;
-	
-	public ChatVO(Long id, String msg) {
-		super();
-		this.id = id;
-		this.msg = msg;
-	}
+	private List<Message> messages;	
 
 	public Long getId() {
 		return id;
@@ -17,10 +13,10 @@ public class ChatVO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getMsg() {
-		return msg;
+	public List<Message> getMessages() {
+		return messages;
 	}
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}	
 }

@@ -26,7 +26,7 @@ public class TccService {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("Falha ao atualizar chat.")
+			throw new Exception("Falha ao atualizar chat.");
 		}
 		
 	}
