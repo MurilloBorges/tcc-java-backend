@@ -1,6 +1,8 @@
-package br.com.projeto.tcc;
+package br.com.projeto.tcc.chat;
 
 import java.util.List;
+
+import br.com.projeto.tcc.message.Message;
 
 public class ChatVO {
 
