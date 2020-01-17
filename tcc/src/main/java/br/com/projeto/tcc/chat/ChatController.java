@@ -21,7 +21,7 @@ public class ChatController {
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity getChat() {
 		try {
-			return ResponseEntity.ok().body("");
+			return ResponseEntity.ok().body(service.getChat());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
 		}
@@ -39,17 +39,17 @@ public class ChatController {
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity postChat(@RequestBody ChatVO chatVO) {
 		try {
-			//created()
-			return ResponseEntity.ok().body(service.postChat(Long.valueOf(0), ""));
+			// usar created() no lugar do ok
+			return ResponseEntity.ok().body(service.postChat(chatVO));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}	
 	
 	@PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity patchChat(@PathVariable Long id) {
+	public ResponseEntity patchChat(@PathVariable Long id, @RequestBody ChatVO chatVO) {
 		try {
-			return ResponseEntity.ok().body(service.getChat(id));
+			return ResponseEntity.ok().body(service.patchChat(id, chatVO));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
