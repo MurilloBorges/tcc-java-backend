@@ -1,4 +1,7 @@
 package br.com.projeto.tcc.chat;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,39 +22,38 @@ public class ChatController {
 	private ChatService service;
 		
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity getChat() {
+	public ResponseEntity<List<ChatVO>> getChat() {
 		try {
-			return ResponseEntity.ok().body(service.getChat());
+			return new ResponseEntity<List<ChatVO>>(service.listarChats(), HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
+			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity getChat(@PathVariable Long id) {
+	public ResponseEntity<ChatVO> getChat(@PathVariable Long id) {
 		try {
-			return ResponseEntity.ok().body(service.getChat(id));
+			return new ResponseEntity<ChatVO>(service.listarChats(id), HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
+			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
 		
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity postChat(@RequestBody ChatVO chatVO) {
+	public ResponseEntity<ChatVO> postChat(@RequestBody ChatVO chatVO) {
 		try {
-			// usar created() no lugar do ok
-			return ResponseEntity.ok().body(service.postChat(chatVO));
+			return new ResponseEntity<ChatVO>(service.salvarChat(chatVO), HttpStatus.CREATED);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
 	
 	@PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity patchChat(@PathVariable Long id, @RequestBody ChatVO chatVO) {
+	public ResponseEntity<ChatVO> patchChat(@PathVariable Long id, @RequestBody ChatVO chatVO) {
 		try {
-			return ResponseEntity.ok().body(service.patchChat(id, chatVO));
+			return new ResponseEntity<ChatVO>(service.atualizarChat(id, chatVO), HttpStatus.OK);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
 }

@@ -6,13 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ChatService {
-	
-	private final String USER = "teste";
-	private final String TOKEN = "99999999999999";
-	private final String URL = "teste";
-	private final String PASSWORD = "123";
 		
-	public List<ChatVO> getChat() throws Exception{
+	public List<ChatVO> listarChats() throws Exception{
     	try {
     		List<ChatVO> chatVOs = null;   	
     		
@@ -23,7 +18,7 @@ public class ChatService {
     	}
     }
 	
-	public ChatVO getChat(Long idChat) throws Exception{
+	public ChatVO listarChats(Long idChat) throws Exception{
     	try {
     		ChatVO chatVO = null;   	
     		
@@ -34,7 +29,7 @@ public class ChatService {
     	}
     }
 
-	public ChatVO postChat(ChatVO chatVO) throws Exception {
+	public ChatVO salvarChat(ChatVO chatVO) throws Exception {
 		try {			
 			return chatVO;
 		} catch (Exception e) {
@@ -43,7 +38,7 @@ public class ChatService {
 		}		
 	}
 	
-	public ChatVO patchChat(Long idChat, ChatVO chatVO) throws Exception {
+	public ChatVO atualizarChat(Long idChat, ChatVO chatVO) throws Exception {
 		try {			
 			return chatVO;
 		} catch (Exception e) {
