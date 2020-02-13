@@ -1,5 +1,6 @@
 package br.com.projeto.tcc.chat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -12,17 +13,17 @@ public class ChatService {
 		
 	public List<ChatVO> listarChats() throws ApiTccException {
     	try {
-    		List<ChatVO> chatVOs = null;   	
+    		List<ChatVO> chatVOs = new ArrayList<ChatVO>();   	
     		
     		return chatVOs;    	
 		} catch (ApiTccException e) {
 			throw e;
 		} catch (Exception e) {
-			throw new ApiTccException("Falha ao carregar chat.", "ERRO_INTERNO", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new ApiTccException("Falha ao carregar chats.", "ERRO_INTERNO", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
 	
-	public ChatVO listarChats(Long idChat) throws ApiTccException {
+	public ChatVO listarChats(Long codChat) throws ApiTccException {
     	try {
     		ChatVO chatVO = null;   	
     		
@@ -45,7 +46,7 @@ public class ChatService {
 		}		
 	}
 	
-	public ChatVO atualizarChat(Long idChat, ChatVO chatVO) throws ApiTccException {
+	public ChatVO atualizarChat(Long codChat, ChatVO chatVO) throws ApiTccException {
 		try {			
 			
 			return chatVO;
